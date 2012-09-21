@@ -20,5 +20,18 @@
       <include-coda>/WEB-INF/boot-foot.inc</include-coda>
     </jsp-property-group>
   </jsp-config>
+
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>onlyForAdmins</web-resource-name>
+      <url-pattern>/admin/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>ADMIN</role-name>
+    </auth-constraint>
+  </security-constraint>
   
+  <login-config>
+  <auth-method>BASIC</auth-method>
+  </login-config>
 </web-app>
