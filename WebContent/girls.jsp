@@ -39,3 +39,5 @@
 
 <hr/>
 Welocome: ${pageContext.request.userPrincipal.name}
+
+<a class="btn btn-small" href="logout.jsp"><i class="icon-off"></i>Logout 1</a>
