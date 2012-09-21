@@ -27,7 +27,7 @@ body {
     <![endif]-->
  
 <!-- Le fav and touch icons -->
-<link rel="shortcut icon" href="ico/favicon.ico">
+<link rel="shortcut icon" href="${url}ico/favicon.ico">
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
         href="ico/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114"
