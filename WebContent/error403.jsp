@@ -1,0 +1,3 @@
+<div class="alert alert-error">
+  Sorry, you have no rights for what you asked for ...
+</div>
