@@ -29,9 +29,23 @@ public class StartupListener implements ServletContextListener {
         addGirl(girls, "Jolan", 85, "DD");
         addGirl(girls, "Zsuzsi", 65, "B");
         
+
+        Map<String, User> users = new ConcurrentHashMap<String, User>();
+        addUser(users, "admin", "pwd", "ADMIN", "CUSTOMER");
+        addUser(users, "suzy", "pwd", "GIRL");
+        addUser(users, "jeno", "pwd", "CUSTOMER");
+        
         event.getServletContext().setAttribute("girls", girls);
+        event.getServletContext().setAttribute("users", users);
+
     }
 
+    private void addUser(Map<String, User> users, String name, String password, String... roles) {
+        User user = new User(name, password, roles);
+        users.put(user.getName(), user);
+       
+    }
+    
     private void addGirl(Map<String, Girl> girls, String name, int breast, String basket) {
         Girl g = new Girl(name, breast, basket);
         girls.put(g.getName(), g);

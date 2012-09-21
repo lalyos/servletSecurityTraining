@@ -37,7 +37,3 @@
 	<a class="carousel-control right " href="#myCarousel" data-slide="next">&rsaquo;</a>
 </div>
 
-<hr/>
-Welocome: ${pageContext.request.userPrincipal.name}
-
-<a class="btn btn-small" href="logout.jsp"><i class="icon-off"></i>Logout 1</a>

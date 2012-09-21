@@ -1,6 +1,8 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib tagdir="/WEB-INF/tags"  prefix="h" %>
  
 <c:url var="url" value="/resources/" />
+<c:url var="loginUrl" value="/login.jsp" />
  
 <!DOCTYPE html>
 <html lang="en">
@@ -50,8 +52,31 @@ body {
                                 <div class="nav-collapse collapse">
                                         <ul class="nav">
                                                 <li class="active"><a href="<c:url value="/girls.jsp" />">Grils</a></li>
-                                                <li><a href="admin/addGirls.jsp">Add Girl</a></li>
-                                                <li><a href="#contact">Contact</a></li>
+                                                
+<c:choose>
+  <c:when test="${not empty sessionScope.username }">
+
+		Welocome: ${pageContext.request.userPrincipal.name}
+
+		<a class="btn btn-small" href="logout.jsp"><i class="icon-off"></i>Logout 1</a>
+  </c:when>
+  <c:otherwise>
+<form class="navbar-form pull-left" action="${loginUrl}" method="post">
+<input type="text" name="username" />
+<input type="password" name="password" required class="span2" />
+<input type="hidden" name="redirectUrl" value="/girls.jsp" />
+<button class="btn" type="submit">Login</button>
+</form>
+
+  </c:otherwise>
+</c:choose>
+                                                
+
+
+<h:hasRole role="ADMIN">
+  <li class="active"><a href="<c:url value="/admin/addGirls.jsp" />">Add grils</a></li>
+</h:hasRole>
+
                                         </ul>
                                 </div>
                                 <!--/.nav-collapse -->

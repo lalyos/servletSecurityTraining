@@ -1,2 +1,3 @@
+<h:redirectIfNotInRole role="ADMIN" redirectUrl="/error403.jsp"  />
 Only for admins
 TODO ...

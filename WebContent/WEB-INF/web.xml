@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:jsp="http://java.sun.com/xml/ns/javaee/jsp" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <display-name>secretWeb</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
@@ -12,7 +12,6 @@
   <listener>
     <listener-class>com.acme.hooters.StartupListener</listener-class>
   </listener>
-
   <jsp-config>
     <jsp-property-group>
       <url-pattern>*.jsp</url-pattern>
@@ -20,27 +19,21 @@
       <include-coda>/WEB-INF/boot-foot.inc</include-coda>
     </jsp-property-group>
   </jsp-config>
-
-  <security-constraint>
-    <web-resource-collection>
-      <web-resource-name>onlyForAdmins</web-resource-name>
-      <url-pattern>/admin/*</url-pattern>
-    </web-resource-collection>
-    <auth-constraint>
-      <role-name>ADMIN</role-name>
-    </auth-constraint>
-  </security-constraint>
-
-  <login-config>
-    <auth-method>FORM</auth-method>
-    <form-login-config>
-      <form-login-page>/login.jsp</form-login-page>
-      <form-error-page>/loginerror.jsp</form-error-page>
-    </form-login-config>
-  </login-config>
-  
   <error-page>
-  <error-code>403</error-code>
-  <location>/error403.jsp</location>
+    <error-code>403</error-code>
+    <location>/error403.jsp</location>
   </error-page>
+  <filter>
+    <display-name>LoginFilter</display-name>
+    <filter-name>LoginFilter</filter-name>
+    <filter-class>com.acme.hooters.LoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>LoginFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher>
+    <dispatcher>INCLUDE</dispatcher>
+    <dispatcher>ERROR</dispatcher>
+  </filter-mapping>
 </web-app>
